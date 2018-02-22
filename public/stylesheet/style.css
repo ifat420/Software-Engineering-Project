@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.cng-bg{
+    background-color: #EEEEEE;
+    margin-bottom: 15px;
+}
+.jumbotron{
+    padding: 0;
+    margin-bottom: 0px;
+}
+
+li a{
+    color: #fff;
+}
