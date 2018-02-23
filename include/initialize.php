@@ -18,5 +18,5 @@
 
     // load database require classes
     require_once(LIB_PATH.DS.'student.php');
-
+    require_once(LIB_PATH.DS.'request.php');
 ?>

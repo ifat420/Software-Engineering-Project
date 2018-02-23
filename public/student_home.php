@@ -28,10 +28,11 @@
                 <p class="lead text-center">Welcome to student section</p>
             </div>
         </div>
+
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav container">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Request for Id Card</a>
+                    <a class="nav-link" href="request_idcard.php?sid=<?php echo $std->s_id ?>">Request for Id Card</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Request for Library Card</a>
@@ -49,7 +50,7 @@
                     <a class="nav-link" href="#">Request for Transcript</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Request for Medicale Testimonial</a>
+                    <a class="nav-link" href="testimonial.php?sid=<?php echo $std->s_id?>">Request for Medicale Testimonial</a>
                 </li>
                 
                 <li class="nav-item" style="float: left">

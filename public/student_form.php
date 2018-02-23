@@ -179,8 +179,7 @@
           <label for="staticEmail" class="col-sm-2 col-form-label text-center"></label>
             <div class="col-sm-10">
               <div class="custom-file">
-                <input type="submit" class="btn btn-primary" name="submit" value="Submit" />
-                
+                <input type="submit" class="btn btn-primary btn-lg" name="submit" value="Submit" />
               </div>
             </div>
           </div>
