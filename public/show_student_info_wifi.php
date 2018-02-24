@@ -1,11 +1,10 @@
 <?php 
     require_once('../include/initialize.php');
-
-    if(!$session->is_logged_in()){
-        redirect_to("login.php");
+    if(isset($_GET['sid'])){
+        $std = Student::find_by_id($_GET['sid']);
+        $wifi = Wifi::find_by_sid($_GET['sid']);
     }
-
-    $std = Student::find_by_id($session->student_id);
+    
 ?>
 <!doctype html>
 <html lang="en">
@@ -29,35 +28,7 @@
             </div>
         </div>
 
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <ul class="navbar-nav container">
-                <li class="nav-item">
-                    <a class="nav-link" href="idcard.php?sid=<?php echo $std->s_id ?>">Request for Id Card</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="library_card_req.php?sid=<?php echo $std->s_id ?>">Request for Library Card</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="wifi_app.php?sid=<?php echo $std->s_id ?>">Request for WiFi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Request for Medicale Application</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Request for Certificate</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Request for Transcript</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="testimonial.php?sid=<?php echo $std->s_id?>">Request for Medicale Testimonial</a>
-                </li>
-                
-                <li class="nav-item" style="float: left">
-                    <a class="nav-link" href="logout.php">Logout</a>
-                </li>
-            </ul>
-        </nav>
+        
     </div>
     
 
@@ -79,6 +50,8 @@
                 <h5>Permanent Address: <?php echo $std->par_add; ?> </h5>
                 <h5>Father name      : <?php echo $std->f_name; ?> </h5>
                 <h5>Mother name      : <?php echo $std->m_name; ?> </h5>
+                <h5>Mac_Address      : <?php echo $wifi->pc_mac_add; ?> </h5>
+                <h5>Mobile_Mac Address      : <?php echo $wifi->mob_mac_add; ?> </h5>
                 Signature:  <img height="50" width="200" alt="signature" src="image/<?php echo $std->sig_name;?>" >
             </div>
         </div>

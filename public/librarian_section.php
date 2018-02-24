@@ -1,15 +1,8 @@
 <?php 
     require_once('../include/initialize.php');
-    $print = "disabled";
-    if(isset($_GET['sid'])){
-       $sid = $_GET['sid'];
-       $req = Request::find_by_sid($sid);
-    }
 
-
-
+    $idcard_reqs = Request::libraryCard_requests();
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -27,32 +20,35 @@
     <div class="cng-bg">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-3 text-center">Request For Testimonial</h1>
-                <p class="lead text-center">Welcome to student section</p>
+                <h1 class="display-3 text-center">Librarian Section</h1>
+                <p class="lead text-center">Welcome to Librarian section</p>
             </div>
         </div>
     </div>
-        
-       <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col-md-auto">
-                  <h3>To get the testimonial you have to request to Chairman Sir.</h3>
-                </div>
-            </div>
-            <form action="testimonial_sub.php" method="POST">
-                <div class="text-center">
-                    <a href="testimonial_sub.php?sid=<?php echo $sid ?>" class="btn btn-secondary btn-lg center-block <?php if($req->req_tm > 0)echo $print ?>" style="width:160px;"> Request </a>
-                </div>
-            <form>
-            <div class="row justify-content-md-center" style="margin-top: 10px;">
-                <div class="text-center">
-                   <?php if($req)if($req->req_tm == 2): ?>
-                    <a href="testmonial_pdf.php?sid=<?php echo $sid ?>" class="btn btn-secondary btn-lg center-block "> Dowonload </a>
-                    <h3>Your Testimonial is Ready</h3>
-                  <?php endif; ?>
-                </div>
-       </div>
     
+
+    <div class="container">
+
+        <?php foreach ($idcard_reqs as $id_req): ?>
+                   <div class="card">
+                      <h5 class="card-header">Library Card Request</h5>
+                      <div class="card-body">
+                        <h5 class="card-title text-center">Request For Library Card</h5>
+                        <a href="library_approve.php?sid=<?php echo $id_req->s_id; ?>" class="btn btn-primary">Approve</a>
+                        <!-- <div class="text-right"> -->
+                            <a href="show_student_info.php?sid=<?php echo $id_req->s_id; ?>" class="btn btn-primary" style="float: right;">Show Info</a>
+                       <!--  </div> -->
+                        
+                      </div>
+                    </div>
+        <?php endforeach; ?>
+
+
+
+
+        
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

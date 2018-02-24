@@ -9,7 +9,6 @@
 
 
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,13 +20,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheet/style.css">
 
-    <title>Student Home</title>
+    <title>Library</title>
   </head>
   <body>
     <div class="cng-bg">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-3 text-center">Request For Testimonial</h1>
+                <h1 class="display-3 text-center">Request For Library Card</h1>
                 <p class="lead text-center">Welcome to student section</p>
             </div>
         </div>
@@ -36,21 +35,25 @@
        <div class="container">
             <div class="row justify-content-md-center">
                 <div class="col-md-auto">
-                  <h3>To get the testimonial you have to request to Chairman Sir.</h3>
+                  <h3>To get the Library Card you have to request to Librarian.</h3>
                 </div>
             </div>
-            <form action="testimonial_sub.php" method="POST">
+            <form action="library_sub.php" method="POST">
                 <div class="text-center">
-                    <a href="testimonial_sub.php?sid=<?php echo $sid ?>" class="btn btn-secondary btn-lg center-block <?php if($req->req_tm > 0)echo $print ?>" style="width:160px;"> Request </a>
+                    <a href="library_sub.php?sid=<?php echo $sid ?>" class="btn btn-secondary btn-lg center-block <?php if($req->req_lib > 0)echo $print ?>" style="width:160px;"> Request </a>
                 </div>
             <form>
+
+
             <div class="row justify-content-md-center" style="margin-top: 10px;">
                 <div class="text-center">
-                   <?php if($req)if($req->req_tm == 2): ?>
-                    <a href="testmonial_pdf.php?sid=<?php echo $sid ?>" class="btn btn-secondary btn-lg center-block "> Dowonload </a>
-                    <h3>Your Testimonial is Ready</h3>
+                   <?php if($req)if($req->req_lib == 2): ?>
+                    <a href="download_libraryCard.php?sid=<?php echo $sid ?>" class="btn btn-secondary btn-lg center-block "> Dowonload </a>
+                    <h3>Your Library Card is Ready</h3>
                   <?php endif; ?>
                 </div>
+
+            </div>
        </div>
     
     <!-- Optional JavaScript -->

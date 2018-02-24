@@ -1,15 +1,11 @@
 <?php 
     require_once('../include/initialize.php');
-    $print = "disabled";
     if(isset($_GET['sid'])){
-       $sid = $_GET['sid'];
-       $req = Request::find_by_sid($sid);
+        $std = Student::find_by_id($_GET['sid']);
+        
     }
-
-
-
+    
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -27,32 +23,39 @@
     <div class="cng-bg">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-3 text-center">Request For Testimonial</h1>
+                <h1 class="display-3 text-center">Student Section</h1>
                 <p class="lead text-center">Welcome to student section</p>
             </div>
         </div>
-    </div>
+
         
-       <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col-md-auto">
-                  <h3>To get the testimonial you have to request to Chairman Sir.</h3>
-                </div>
-            </div>
-            <form action="testimonial_sub.php" method="POST">
-                <div class="text-center">
-                    <a href="testimonial_sub.php?sid=<?php echo $sid ?>" class="btn btn-secondary btn-lg center-block <?php if($req->req_tm > 0)echo $print ?>" style="width:160px;"> Request </a>
-                </div>
-            <form>
-            <div class="row justify-content-md-center" style="margin-top: 10px;">
-                <div class="text-center">
-                   <?php if($req)if($req->req_tm == 2): ?>
-                    <a href="testmonial_pdf.php?sid=<?php echo $sid ?>" class="btn btn-secondary btn-lg center-block "> Dowonload </a>
-                    <h3>Your Testimonial is Ready</h3>
-                  <?php endif; ?>
-                </div>
-       </div>
+    </div>
     
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <img alt="student_image" src="image/<?php echo $std->img_name; ?>" alt="..." class="img-thumbnail float-left">
+            </div>
+
+            <div class="col-md-9">
+                <h4>Name           : <?php echo $std->first_name." ".$std->last_name; ?> </h4>
+                <h5>Roll           : <?php echo $std->roll; ?> </h5>
+                <h5>Department     : <?php echo $std->dept; ?> </h5>
+                <h5>Date-of_birth  : <?php echo $std->roll; ?> </h5>
+                <h5>Blood Group    : <?php echo $std->b_group; ?> </h5>
+                <h5>Email          : <?php echo $std->email; ?> </h5>
+                <h5>Session        : <?php echo $std->session; ?> </h5>
+                <h5>Present Address  : <?php echo $std->pre_add; ?> </h5>
+                <h5>Permanent Address: <?php echo $std->par_add; ?> </h5>
+                <h5>Father name      : <?php echo $std->f_name; ?> </h5>
+                <h5>Mother name      : <?php echo $std->m_name; ?> </h5>
+                Signature:  <img height="50" width="200" alt="signature" src="image/<?php echo $std->sig_name;?>" >
+            </div>
+        </div>
+        <?php echo output_message($message); ?>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

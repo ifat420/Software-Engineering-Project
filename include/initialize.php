@@ -19,4 +19,6 @@
     // load database require classes
     require_once(LIB_PATH.DS.'student.php');
     require_once(LIB_PATH.DS.'request.php');
+    require_once(LIB_PATH.DS.'teacher.php');
+    require_once(LIB_PATH.DS.'wifi.php');
 ?>

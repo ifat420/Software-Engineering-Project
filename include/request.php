@@ -24,6 +24,28 @@
             return $attributes;
         }
 
+         public static function testimonial_requests(){
+        	global $database;
+	        return self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE req_tm = 1");
+        }
+
+         public static function libraryCard_requests(){
+        	global $database;
+	        return self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE req_lib = 1");
+        }
+
+        public static function req_for_idcard(){
+        	global $database;
+	        return self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE req_id = 1");
+        }
+
+         public static function req_for_idcard_provost(){
+        	global $database;
+	        return self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE req_id = 2");
+        }
+
+
+
          public static function find_by_sid($sid = 0){
 	        global $database;
 	        $result_array = self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE s_id= ". $database->escape_value($sid)." LIMIT 1");
@@ -40,12 +62,74 @@
         	}
         }
 
+        public function chairman_app_idcard($sid = 0){
+        	global $database;
+        	$sql = "UPDATE request set req_id = 2 WHERE s_id =".$sid;
+        	if($database->query($sql)){
+        		return true;
+        	}else{
+        		return false;
+        	}
+        }
+
+        public function librarian_app($sid = 0){
+        	global $database;
+        	$sql = "UPDATE request set req_lib = 2 WHERE s_id =".$sid;
+        	if($database->query($sql)){
+        		return true;
+        	}else{
+        		return false;
+        	}
+        }
+
+        public function chairman_app_testimonial($sid = 0){
+        	global $database;
+        	$sql = "UPDATE request set req_tm = 2 WHERE s_id =".$sid;
+        	if($database->query($sql)){
+        		return true;
+        	}else{
+        		return false;
+        	}
+        }
+
+        public function provost_app_idcard($sid = 0){
+        	global $database;
+        	$sql = "UPDATE request set req_id = 3 WHERE s_id =".$sid;
+        	if($database->query($sql)){
+        		return true;
+        	}else{
+        		return false;
+        	}
+        }
+
         public function request_for_testimonial($sid = 0){
         	global $database;
         	if($this->check_before_req($sid)){
         		$sql = "UPDATE request set req_tm = 1 WHERE s_id =".$sid;
         	}else{
         		$sql = "INSERT request(s_id,req_id,req_lib,req_wifi,req_ma,req_cer,req_trans,req_tm) VALUES({$sid},0,0,0,0,0,0,1)";
+        	}
+
+        	$database->query($sql);
+        }
+
+        public function request_for_libraryCard($sid = 0){
+        	global $database;
+        	if($this->check_before_req($sid)){
+        		$sql = "UPDATE request set req_lib = 1 WHERE s_id =".$sid;
+        	}else{
+        		$sql = "INSERT request(s_id,req_id,req_lib,req_wifi,req_ma,req_cer,req_trans,req_tm) VALUES({$sid},0,1,0,0,0,0,0)";
+        	}
+
+        	$database->query($sql);
+        }
+
+         public function request_for_idcard($sid = 0){
+        	global $database;
+        	if($this->check_before_req($sid)){
+        		$sql = "UPDATE request set req_id = 1 WHERE s_id =".$sid;
+        	}else{
+        		$sql = "INSERT request(s_id,req_id,req_lib,req_wifi,req_ma,req_cer,req_trans,req_tm) VALUES({$sid},1,0,0,0,0,0,0)";
         	}
 
         	$database->query($sql);

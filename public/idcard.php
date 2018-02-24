@@ -9,7 +9,6 @@
 
 
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -27,7 +26,7 @@
     <div class="cng-bg">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-3 text-center">Request For Testimonial</h1>
+                <h1 class="display-3 text-center">Request For Idcard</h1>
                 <p class="lead text-center">Welcome to student section</p>
             </div>
         </div>
@@ -41,16 +40,20 @@
             </div>
             <form action="testimonial_sub.php" method="POST">
                 <div class="text-center">
-                    <a href="testimonial_sub.php?sid=<?php echo $sid ?>" class="btn btn-secondary btn-lg center-block <?php if($req->req_tm > 0)echo $print ?>" style="width:160px;"> Request </a>
+                    <a href="idcard_sub.php?sid=<?php echo $sid ?>" class="btn btn-secondary btn-lg center-block <?php if($req->req_id > 0)echo $print ?>" style="width:160px;"> Request </a>
                 </div>
             <form>
+
+
             <div class="row justify-content-md-center" style="margin-top: 10px;">
                 <div class="text-center">
-                   <?php if($req)if($req->req_tm == 2): ?>
-                    <a href="testmonial_pdf.php?sid=<?php echo $sid ?>" class="btn btn-secondary btn-lg center-block "> Dowonload </a>
-                    <h3>Your Testimonial is Ready</h3>
+                   <?php if($req)if($req->req_id == 3): ?>
+                    <a href="download_idcard.php?sid=<?php echo $sid ?>" class="btn btn-secondary btn-lg center-block "> Dowonload </a>
+                    <h3>Your Idcard is Ready</h3>
                   <?php endif; ?>
                 </div>
+
+            </div>
        </div>
     
     <!-- Optional JavaScript -->

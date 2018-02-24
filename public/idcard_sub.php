@@ -3,7 +3,7 @@
 	if(isset($_GET['sid'])){
 		$sid = $_GET['sid'];
 		$req = new Request();
-		$req->request_for_testimonial($sid);
+		$req->request_for_idcard($sid);
 		redirect_to("student_home.php");
 	}
 	
